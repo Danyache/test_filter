@@ -65,19 +65,19 @@ async def process_items_command(message: types.Message):
 	global prices
 	chat_brands = None
 	chat_prices = None
-	await bot.send_message(msg.from_user.id, '123')
+	await bot.send_message(message.from_user.id, '123')
 	try:
 		chat_brands = brands[message.chat.id]
 	except BaseException:
 		pass
-	await bot.send_message(msg.from_user.id, '1234')
+	await bot.send_message(message.from_user.id, '1234')
 	try:
 		chat_prices = prices[message.chat.id]
 	except BaseException:
 		pass
-	await bot.send_message(msg.from_user.id, '555')
+	await bot.send_message(message.from_user.id, '555')
 	img_url, href, item_price = get_top_items(chat_brands, chat_prices)
-	await bot.send_message(msg.from_user.id, '78123')
+	await bot.send_message(message.from_user.id, '78123')
 	tell_price = 'Цена на данный ноутбук составляет ' + item_price
 	await bot.send_photo(message.chat.id, types.InputFile.from_url(img_url))
 	await bot.send_message(message.from_user.id, tell_price)
@@ -87,9 +87,9 @@ async def process_items_command(message: types.Message):
 
 
 @dp.message_handler()
-async def message_handler(msg: types.Message):
+async def message_handler(message: types.Message):
 	info = 'Я не чат-бот, извини. Задай, пожалуйста, параметры ноутбука.'
-	await bot.send_message(msg.from_user.id, info)
+	await bot.send_message(message.from_user.id, info)
 
 if __name__ == '__main__':
     executor.start_polling(dp)
