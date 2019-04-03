@@ -75,7 +75,7 @@ async def process_items_command(message: types.Message):
 		chat_prices = prices[message.chat.id]
 	except BaseException:
 		pass
-    await bot.send_message(msg.from_user.id, '555')
+	await bot.send_message(msg.from_user.id, '555')
 	img_url, href, item_price = get_top_items(chat_brands, chat_prices)
 	await bot.send_message(msg.from_user.id, '78123')
 	tell_price = 'Цена на данный ноутбук составляет ' + item_price
