@@ -29,7 +29,7 @@ def get_top_items(brand=None, price=None):
         
     r = requests.get(url) #, headers={'User-agent':generate_user_agent()})
     
-    soup = BeautifulSoup(r.text, "lxml")
+    soup = BeautifulSoup(r.text, "html")
     
     img = soup.find('div', class_="c-product-tile").find('img')['data-original'][2:]
     item_price = soup.find('div', class_="c-product-tile").find('div', class_='c-pdp-price__current').text.replace('\xa0', '').replace('\t', '').replace('\n', '').replace(' ', '')
