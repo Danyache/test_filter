@@ -27,7 +27,7 @@ def get_top_items(brand=None, price=None):
     if price:
         url = url + 'price=from-' + price[0] + '-to-' + price[1]
         
-    r = requests.get(url) #, headers={'User-agent':generate_user_agent()})
+    r = requests.get(url, headers={'User-Agent': 'Chrome/70.0.3538.77 Safari/537.36'})
     
     soup = BeautifulSoup(r.text, "html")
     
