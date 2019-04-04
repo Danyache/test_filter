@@ -36,9 +36,9 @@ def get_top_items(brand=None, price=None):
     """
     try:
 	    href = soup.find('div', class_="c-product-tile").find('a')['href']
-	    href = "https://www.mvideo.ru" + href
-	    return href
-	except:
+		href = "https://www.mvideo.ru" + href
+		return href
+	except BaseException:
 		return soup
 
 
