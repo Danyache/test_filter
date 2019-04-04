@@ -46,10 +46,10 @@ def get_top_items(brand=None, price=None):
     """
     try:
 	    href = soup.find('div', class_="c-product-tile").find('a')['href']
-		href = "https://www.mvideo.ru" + href
-		return href
+	    href = "https://www.mvideo.ru" + href
+	    return href
 	except BaseException:
-		return soup
+	    return soup
 
 
 @dp.message_handler(commands=['start'], commands_prefix='!/')
