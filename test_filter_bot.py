@@ -15,24 +15,34 @@ brands = {}
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
+
 def get_top_items(brand=None, price=None):
     url = "https://www.mvideo.ru/noutbuki-planshety-komputery/noutbuki-118/f/"
-    
+
     if brand:
         brands = str(brand[0])
         for b in brand[1:]:
             brands = brands + ',' + str(b)
         url = url + 'brand=' + brands + '/'
-    
+
     if price:
         url = url + 'price=from-' + price[0] + '-to-' + price[1]
-        
-    r = requests.get(url, headers={'User-Agent': 'Chrome/70.0.3538.77 Safari/537.36'})
-    
+
+    r = requests.get(
+    url, headers={
+        'User-Agent': 'Chrome/70.0.3538.77 Safari/537.36'})
+
     soup = BeautifulSoup(r.text, "html.parser")
     """
-    img = soup.find('div', class_="c-product-tile").find('img')['data-original'][2:]
-    item_price = soup.find('div', class_="c-product-tile").find('div', class_='c-pdp-price__current').text.replace('\xa0', '').replace('\t', '').replace('\n', '').replace(' ', '')
+    img = soup.find(
+        'div', class_="c-product-tile").find('img')['data-original'][2:]
+    item_price = soup.find('div',
+    class_="c-product-tile").find('div',
+    class_='c-pdp-price__current').text.replace('\xa0',
+    '').replace('\t',
+    '').replace('\n',
+    '').replace(' ',
+     '')
     """
     try:
 	    href = soup.find('div', class_="c-product-tile").find('a')['href']
