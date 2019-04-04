@@ -34,9 +34,12 @@ def get_top_items(brand=None, price=None):
     img = soup.find('div', class_="c-product-tile").find('img')['data-original'][2:]
     item_price = soup.find('div', class_="c-product-tile").find('div', class_='c-pdp-price__current').text.replace('\xa0', '').replace('\t', '').replace('\n', '').replace(' ', '')
     """
-    href = soup.find('div', class_="c-product-tile").find('a')['href']
-    href = "https://www.mvideo.ru" + href
-    return href
+    try:
+	    href = soup.find('div', class_="c-product-tile").find('a')['href']
+	    href = "https://www.mvideo.ru" + href
+	    return href
+	except:
+		return soup
 
 
 @dp.message_handler(commands=['start'], commands_prefix='!/')
