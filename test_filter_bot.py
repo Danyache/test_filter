@@ -29,13 +29,14 @@ def get_top_items(brand=None, price=None):
         
     r = requests.get(url, headers={'User-Agent': 'Chrome/70.0.3538.77 Safari/537.36'})
     
-    soup = BeautifulSoup(r.text, "html")
-    
+    soup = BeautifulSoup(r.text, "html.parser")
+    """
     img = soup.find('div', class_="c-product-tile").find('img')['data-original'][2:]
     item_price = soup.find('div', class_="c-product-tile").find('div', class_='c-pdp-price__current').text.replace('\xa0', '').replace('\t', '').replace('\n', '').replace(' ', '')
+    """
     href = soup.find('div', class_="c-product-tile").find('a')['href']
     href = "https://www.mvideo.ru" + href
-    return img, href, item_price
+    return href
 
 
 @dp.message_handler(commands=['start'], commands_prefix='!/')
@@ -76,13 +77,15 @@ async def process_items_command(message: types.Message):
 	except BaseException:
 		pass
 	await bot.send_message(message.from_user.id, '555')
-	img_url, href, item_price = get_top_items(chat_brands, chat_prices)
+	href = get_top_items(chat_brands, chat_prices)
 	await bot.send_message(message.from_user.id, '78123')
+	await bot.send_message(message.from_user.id, href)
+	"""
 	tell_price = 'Цена на данный ноутбук составляет ' + item_price
 	await bot.send_photo(message.chat.id, types.InputFile.from_url(img_url))
 	await bot.send_message(message.from_user.id, tell_price)
 	await bot.send_message(message.from_user.id, href)
-
+	"""
 
 
 
