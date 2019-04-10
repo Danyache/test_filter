@@ -72,7 +72,7 @@ async def process_price_command(message: types.Message):
 @dp.message_handler(commands=['brand'], commands_prefix='!/')
 async def process_brand_command(message: types.Message):
 	global brands
-	brands[meassage.chat.id] = message.text.split()
+	brands[message.chat.id] = message.text.split()
 	await bot.send_message(message.from_user.id, str(brands))
 
 @dp.message_handler(commands=['items'], commands_prefix='!/')
@@ -81,8 +81,8 @@ async def process_items_command(message: types.Message):
 	global prices
 	await bot.send_message(message.from_user.id, str(prices))
 	await bot.send_message(message.from_user.id, str(brands))
-	chat_brands = None
-	chat_prices = None
+	chat_brands = 'b'
+	chat_prices = 'p'
 	await bot.send_message(message.from_user.id, '123')
 	try:
 		chat_brands = brands[message.chat.id]
