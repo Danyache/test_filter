@@ -5,6 +5,7 @@ from aiogram.utils import executor
 import requests
 from bs4 import BeautifulSoup
 import re
+from user_agent import generate_user_agent, generate_navigator
 
 
 TOKEN = '889443907:AAHUP8IQRoNQ4fWXuIpd5mML-fBwbRaANuM'
@@ -29,8 +30,7 @@ def get_top_items(brand=None, price=None):
         url = url + 'price=from-' + price[0] + '-to-' + price[1]
 
     r = requests.get(
-    url, headers={
-        'User-Agent': 'Chrome/70.0.3538.77 Safari/537.36'})
+    url, headers=generate_navigator())
 
     soup = BeautifulSoup(r.text, "html.parser")
     """
