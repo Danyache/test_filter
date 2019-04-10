@@ -76,8 +76,7 @@ async def process_brand_command(message: types.Message):
 async def process_items_command(message: types.Message):
 	global brands
 	global prices
-	await bot.send_message(message.from_user.id, str(prices))
-	await bot.send_message(message.from_user.id, str(brands))
+	
 	chat_brands = 'b'
 	chat_prices = 'p'
 	
@@ -90,16 +89,13 @@ async def process_items_command(message: types.Message):
 		chat_prices = prices[message.chat.id]
 	except BaseException:
 		pass
-	await bot.send_message(message.from_user.id, '123')
+	
 	href = get_top_items(chat_brands[1:], chat_prices[1:])
 
-	await bot.send_message(message.from_user.id, href)
-	"""
-	tell_price = 'Цена на данный ноутбук составляет ' + item_price
+	tell_price = 'Цена на данный ноутбук составляет ' + item_price[:-1] + 'рублей'
 	await bot.send_photo(message.chat.id, types.InputFile.from_url(img_url))
 	await bot.send_message(message.from_user.id, tell_price)
 	await bot.send_message(message.from_user.id, href)
-	"""
 
 
 
