@@ -30,7 +30,7 @@ def get_top_items(brand=None, price=None):
         url = url + 'price=from-' + price[0] + '-to-' + price[1]
 
     r = requests.get(
-    url, headers=generate_user_agent())
+    url, headers=generate_navigator())
 
     soup = BeautifulSoup(r.text, "html.parser")
     """
@@ -90,6 +90,8 @@ async def process_items_command(message: types.Message):
 	except BaseException:
 		pass
 	await bot.send_message(message.from_user.id, '555')
+	await bot.send_message(message.from_user.id, chat_brands)
+	await bot.send_message(message.from_user.id, chat_prices)
 	href = get_top_items(chat_brands, chat_prices)
 	await bot.send_message(message.from_user.id, '78123')
 	await bot.send_message(message.from_user.id, href)
