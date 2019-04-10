@@ -83,21 +83,19 @@ async def process_items_command(message: types.Message):
 	await bot.send_message(message.from_user.id, str(brands))
 	chat_brands = 'b'
 	chat_prices = 'p'
-	await bot.send_message(message.from_user.id, '123')
+	
 	try:
 		chat_brands = brands[message.chat.id]
 	except BaseException:
 		pass
-	await bot.send_message(message.from_user.id, '1234')
+	
 	try:
 		chat_prices = prices[message.chat.id]
 	except BaseException:
 		pass
-	await bot.send_message(message.from_user.id, '555')
-	await bot.send_message(message.from_user.id, chat_brands)
-	await bot.send_message(message.from_user.id, chat_prices)
-	href = get_top_items(chat_brands, chat_prices)
-	await bot.send_message(message.from_user.id, '78123')
+	await bot.send_message(message.from_user.id, '123')
+	href = get_top_items(chat_brands[1:], chat_prices[1:])
+
 	await bot.send_message(message.from_user.id, href)
 	"""
 	tell_price = 'Цена на данный ноутбук составляет ' + item_price
