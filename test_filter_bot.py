@@ -90,7 +90,7 @@ async def process_items_command(message: types.Message):
 	except BaseException:
 		pass
 	
-	img, href, item_price = get_top_items(chat_brands[1:], chat_prices[1:])
+	img_url, href, item_price = get_top_items(chat_brands[1:], chat_prices[1:])
 
 	tell_price = 'Цена на данный ноутбук составляет ' + item_price[:-1] + 'рублей'
 	await bot.send_photo(message.chat.id, types.InputFile.from_url(img_url))
