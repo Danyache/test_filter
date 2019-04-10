@@ -33,21 +33,20 @@ def get_top_items(brand=None, price=None):
     url, headers=generate_navigator())
 
     soup = BeautifulSoup(r.text, "html.parser")
-    """
-    img = soup.find(
-        'div', class_="c-product-tile").find('img')['data-original'][2:]
-    item_price = soup.find('div',
-    class_="c-product-tile").find('div',
-    class_='c-pdp-price__current').text.replace('\xa0',
-    '').replace('\t',
-    '').replace('\n',
-    '').replace(' ',
-     '')
-    """
+    
     try:
+	    img = soup.find(
+	        'div', class_="c-product-tile").find('img')['data-original'][2:]
+	    item_price = soup.find('div',
+	    class_="c-product-tile").find('div',
+	    class_='c-pdp-price__current').text.replace('\xa0',
+	    '').replace('\t',
+	    '').replace('\n',
+	    '').replace(' ',
+	     '')
 	    href = soup.find('div', class_="c-product-tile").find('a')['href']
 	    href = "https://www.mvideo.ru" + href
-	    return href
+	    return img, href, item_price
     except BaseException:
 	    return str(url + '\n' + soup)
 
@@ -67,13 +66,11 @@ async def process_help_command(message: types.Message):
 async def process_price_command(message: types.Message):
 	global prices
 	prices[message.chat.id] = message.text.split()
-	await bot.send_message(message.from_user.id, str(prices))
 
 @dp.message_handler(commands=['brand'], commands_prefix='!/')
 async def process_brand_command(message: types.Message):
 	global brands
 	brands[message.chat.id] = message.text.split()
-	await bot.send_message(message.from_user.id, str(brands))
 
 @dp.message_handler(commands=['items'], commands_prefix='!/')
 async def process_items_command(message: types.Message):
