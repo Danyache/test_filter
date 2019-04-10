@@ -30,7 +30,7 @@ def get_top_items(brand=None, price=None):
         url = url + 'price=from-' + price[0] + '-to-' + price[1]
 
     r = requests.get(
-    url, headers=generate_navigator())
+    url, headers=generate_user_agent())
 
     soup = BeautifulSoup(r.text, "html.parser")
     """
@@ -49,7 +49,7 @@ def get_top_items(brand=None, price=None):
 	    href = "https://www.mvideo.ru" + href
 	    return href
     except BaseException:
-	    return str(soup)
+	    return str(url + '\n' + soup)
 
 
 @dp.message_handler(commands=['start'], commands_prefix='!/')
