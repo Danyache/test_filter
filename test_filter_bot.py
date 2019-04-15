@@ -93,6 +93,8 @@ async def keyboard_call(callback_query: types.CallbackQuery):
 	# bot.send_message(call.message.chat.id, 'Запомню : )');
 	brands[callback_query.message.chat.id] = str(callback_query.data)
 	await bot.send_message(callback_query.message.chat.id, text=str(callback_query.data))
+	await bot.send_message(callback_query.message.chat.id, text=str(callback_query.message.chat.id))
+	await bot.send_message(callback_query.message.chat.id, text=brands[callback_query.message.chat.id])
 
 
 
@@ -117,6 +119,8 @@ async def process_items_command(message: types.Message):
 	img_url, href, item_price = get_top_items(chat_brands[1:], chat_prices[1:])
 
 	tell_price = 'Цена на данный ноутбук составляет ' + item_price[:-1] + 'рублей'
+
+	await bot.send_message(message.chat.id, srt(message.chat.id))
 	await bot.send_photo(message.chat.id, types.InputFile.from_url("http://" + img_url))
 	await bot.send_message(message.from_user.id, tell_price)
 	await bot.send_message(message.from_user.id, href)
