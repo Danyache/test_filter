@@ -117,7 +117,7 @@ async def process_items_command(message: types.Message):
 		pass
 
 	await bot.send_message(message.chat.id, str(brands[message.chat.id]))
-	await bot.send_message(message.chat.id, str(chat_brands[1:]))
+	await bot.send_message(message.chat.id, str(chat_brands[:]))
 	
 	img_url, href, item_price = get_top_items(chat_brands[1:], chat_prices[1:])
 
