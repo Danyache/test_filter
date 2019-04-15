@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from user_agent import generate_user_agent, generate_navigator
+from aiogram.types.inline_keyboard import InlineKeyboardButton, InlineKeyboardMarkup
 
 
 TOKEN = '889443907:AAHUP8IQRoNQ4fWXuIpd5mML-fBwbRaANuM'
@@ -70,7 +71,29 @@ async def process_price_command(message: types.Message):
 @dp.message_handler(commands=['brand'], commands_prefix='!/')
 async def process_brand_command(message: types.Message):
 	global brands
-	brands[message.chat.id] = message.text.split()
+
+	keyboard = InlineKeyboardMarkup()
+	key_acer = InlineKeyboardButton(text='Acer', callback_data='acer')
+	key_apple = InlineKeyboardButton(text='Apple', callback_data='apple')
+	key_asus = InlineKeyboardButton(text='Asus', callback_data='asus')
+	key_hp = InlineKeyboardButton(text='HP', callback_data='HP')
+	key_lenovo = InlineKeyboardButton(text='Lenovo', callback_data='lenovo')
+	keyboard.add(key_acer)
+	keyboard.add(key_apple)
+	keyboard.add(key_asus)
+	keyboard.add(key_hp)
+	keyboard.add(key_lenovo)
+
+	# brands[message.chat.id] = message.text.split()
+	await bot.send_message(message.from_user.id, text='Выбери бренд товара', reply_markup=keyboard)
+
+@dp.callback_query_handler(func=lambda call: True)
+async def keyboard_call(call):
+	global brands
+	# bot.send_message(call.message.chat.id, 'Запомню : )');
+	brands[call.message.chat.id] = str(call.data)
+
+
 
 @dp.message_handler(commands=['items'], commands_prefix='!/')
 async def process_items_command(message: types.Message):
