@@ -92,6 +92,7 @@ async def keyboard_call(call):
 	global brands
 	# bot.send_message(call.message.chat.id, 'Запомню : )');
 	brands[call.message.chat.id] = str(call.data)
+	await bot.send_message(message.from_user.id, text=str(call.data))
 
 
 
