@@ -92,7 +92,7 @@ async def keyboard_call(callback_query: types.CallbackQuery):
 	global brands
 	# bot.send_message(call.message.chat.id, 'Запомню : )');
 	brands[callback_query.message.chat.id] = str(callback_query.data)
-	await bot.send_message(callback_query.message.from_user.id, text=str(callback_query.data))
+	await bot.send_message(callback_query.message.chat.id, text=str(callback_query.data))
 
 
 
