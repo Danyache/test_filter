@@ -91,10 +91,11 @@ async def process_brand_command(message: types.Message):
 async def keyboard_call(callback_query: types.CallbackQuery):
 	global brands
 	# bot.send_message(call.message.chat.id, 'Запомню : )');
-	brands[callback_query.message.chat.id] = str(callback_query.data)
-	await bot.send_message(callback_query.message.chat.id, text=str(callback_query.data))
-	await bot.send_message(callback_query.message.chat.id, text=str(callback_query.message.chat.id))
-	await bot.send_message(callback_query.message.chat.id, text=brands[callback_query.message.chat.id])
+	brands[callback_query.message.chat.id] = [str(callback_query.data)]
+	# await bot.send_message(callback_query.message.chat.id, text=str(callback_query.data))
+	# await bot.send_message(callback_query.message.chat.id, text=str(callback_query.message.chat.id))
+	# await bot.send_message(callback_query.message.chat.id, text=brands[callback_query.message.chat.id])
+	await bot.send_message(callback_query.message.chat.id, text='Хорошо, я запомнил твой выбор')
 
 
 
