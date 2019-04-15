@@ -120,7 +120,7 @@ async def process_items_command(message: types.Message):
 
 	tell_price = 'Цена на данный ноутбук составляет ' + item_price[:-1] + 'рублей'
 
-	await bot.send_message(message.chat.id, srt(message.chat.id))
+	await bot.send_message(message.chat.id, str(message.chat.id))
 	await bot.send_photo(message.chat.id, types.InputFile.from_url("http://" + img_url))
 	await bot.send_message(message.from_user.id, tell_price)
 	await bot.send_message(message.from_user.id, href)
