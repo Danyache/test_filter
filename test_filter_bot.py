@@ -87,12 +87,12 @@ async def process_brand_command(message: types.Message):
 	# brands[message.chat.id] = message.text.split()
 	await bot.send_message(message.from_user.id, text='Выбери бренд товара', reply_markup=keyboard)
 
-@dp.callback_query_handler(func=lambda call: True)
-async def keyboard_call(call):
+@dp.callback_query_handler(lambda callback_query: True)
+async def keyboard_call(callback_query: types.CallbackQuery):
 	global brands
 	# bot.send_message(call.message.chat.id, 'Запомню : )');
-	brands[call.message.chat.id] = str(call.data)
-	await bot.send_message(message.from_user.id, text=str(call.data))
+	brands[callback_query.message.chat.id] = str(callback_query.data)
+	await bot.send_message(callback_query.message.from_user.id, text=str(callback_query.data))
 
 
 
